@@ -12,8 +12,8 @@ module.exports = {
     "vue/multi-word-component-names": "off",
     "vue/no-v-model-argument": "off",
   },
-  extends: ["plugin:vue/recommended", "eslint:recommended", "@vue/prettier"],
+  extends: ["plugin:vue/recommended", "eslint:recommended"],
   parserOptions: {
-    "ecmaVersion": 13,
+    ecmaVersion: 13,
   },
 };
