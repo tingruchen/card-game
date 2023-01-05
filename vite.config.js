@@ -41,6 +41,9 @@ export default defineConfig(({ mode }) => {
     envPrefix: "VUE_APP_",
     server: {
       port: env.VUE_APP_PORT
+    },
+    test: {
+      environment: "happy-dom"
     }
   };
 });
