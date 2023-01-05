@@ -1,23 +1,11 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "module": "esnext",
-    "baseUrl": "./",
-    "moduleResolution": "node",
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
-      "assets": ["src/assets/*"],
-      "components": ["src/components/*"],
-      "utility": ["src/utility/*"],
-      "tailwind": ["src/tailwind/*"],
-      "pages": ["src/pages/*"],
-      "apis": ["src/api/*"],
-    },
-    "lib": [
-      "esnext",
-      "dom",
-      "dom.iterable",
-      "scripthost"
-    ]
+      "@/*": ["src/*"]
+    }
+  },
+  "vueCompilerOptions": {
+    "skipTemplateCodegen": true
   }
 }

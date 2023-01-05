@@ -7,16 +7,9 @@ module.exports = {
     "rule-empty-line-before": [
       "always",
       {
-        ignore: ["after-comment", "first-nested"]
-      }
+        ignore: ["after-comment", "first-nested"],
+      },
     ],
     "no-descending-specificity": null,
-    "at-rule-no-unknown": null,
-    "scss/at-rule-no-unknown": [
-      true,
-      {
-        "ignoreAtRules": ["tailwind"]
-      }
-    ]
-  }
+  },
 };
