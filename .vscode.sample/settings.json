@@ -1,11 +1,31 @@
 {
-  "editor.quickSuggestions": {
-    "strings": true
+  // Vue
+  "eslint.run": "onType",
+  "eslint.alwaysShowStatus": true,
+  // "vetur.format.defaultFormatter.js": "prettier",
+  // "vetur.format.defaultFormatter.css": "prettier",
+  "editor.formatOnSave": true,
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  // "stylelint.autoFix": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true,
-    "source.fixAll.stylelint": true
-  }
+    // "source.fixAll.stylelint": true
+  },
+  "eslint.validate": [
+    "javascript",
+    "vue"
+  ]
 }
-
-  

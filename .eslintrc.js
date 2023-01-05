@@ -1,19 +1,22 @@
 module.exports = {
   root: true,
-  env: {
-    es2022: true,
-    node: true,
-    browser: true,
+  parserOptions: {
+    sourceType: "module"
   },
+  env: {
+    node: true,
+    browser: true
+  },
+  extends: [
+    "eslint:recommended",
+    "plugin:vue/vue3-recommended",
+    "plugin:prettier-vue/recommended"
+  ],
+  parser: "vue-eslint-parser",
   plugins: ["vue", "prettier"],
   rules: {
-    "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
-    "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
+    "no-unused-vars": ["warn", { varsIgnorePattern: ".*", args: "none" }],
     "vue/multi-word-component-names": "off",
-    "vue/no-v-model-argument": "off",
-  },
-  extends: ["plugin:vue/recommended", "eslint:recommended", "@vue/prettier"],
-  parserOptions: {
-    "ecmaVersion": 13,
-  },
+    "prettier/prettier": "error"
+  }
 };
