@@ -37,6 +37,7 @@
     "vite": "^4.0.3",
     "vite-plugin-eslint": "^1.6.1",
     "vitest": "^0.26.3",
-    "vue-eslint-parser": "^9.0.3"
+    "vue-eslint-parser": "^9.0.3",
+    "zip-local": "^0.3.5"
   }
 }
