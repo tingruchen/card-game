@@ -30,7 +30,7 @@ jobs:
           at: ~/project
       - run:
           name: Install firebase
-          command: npm install --save-dev firebase-tools & ls
+          command: npm install -D firebase-tools & ls
       - run:
           name: Deploy app to Firebase Hosting
           command: pwd & ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN
