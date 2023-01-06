@@ -38,7 +38,7 @@ jobs:
           command: npm install -D firebase-tools & ls
       - run:
           name: Deploy app to Firebase Hosting
-          command: pwd & ls & ./node_modules/.bin/firebase # & ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN
+          command: cd ./node_modules/.bin & ls & pwd # & ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN
 
 workflows:
   build_test_deploy: # this can be any name you choose
