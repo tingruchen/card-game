@@ -9,36 +9,48 @@ orbs:
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
   build_and_test: # this can be any name you choose
-    executor: node/default # use the default executor defined within the orb
+    working_directory: ~/mern-starter
+    # Reuse Docker container specification given by the node Orb
+    executor: node/default
     steps:
       - checkout
-      - node/install:
-          node-version: '14'
+      # Install dependencies - the node Orb take care of installation and dependency caching
       - node/install-packages:
-          pkg-manager: yarn
+          app-dir: ~/mern-starter
+          cache-path: node_modules
+          override-ci-command: npm i
       - run:
           name: Run tests
           command: yarn test
       - run:
           name: Build app
-          command: pwd & yarn build  & ls
-      - persist_to_workspace:
-          root: ~/project
-          paths: .
-  deploy: # this can be any name you choose
-    executor: node/default
-    steps:
-      - attach_workspace:
-          at: ~/project
+          command: yarn build
       - run:
-          name: Check version
-          command: node -v & npm -v
+          name: Check
+          command: pwd & ls
+      # Save workspace for subsequent jobs (i.e. test)
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+
+  deploy: # this can be any name you choose
+    docker:
+      # The primary container is an instance of the first image listed. The job's commands run in this container.
+      - image: cimg/node:current
+    steps:
+      # Reuse the workspace from the build job
+      - attach_workspace:
+          at: .
       - run:
           name: Install firebase
           command: npm install & npm install -D firebase-tools & ls
       - run:
+          name: Check
+          command: pwd & ls
+      - run:
           name: Deploy app to Firebase Hosting
-          command: cd ./node_modules & pwd & ls # & ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN
+          command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN
 
 workflows:
   build_test_deploy: # this can be any name you choose
