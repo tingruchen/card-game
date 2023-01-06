@@ -28,9 +28,11 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/project
+      - node/install:
+          node-version: '14'
       - run:
           name: Install firebase
-          command: npm install -D firebase-tools & ls
+          command: node -v & npm install -D firebase-tools & ls
       - run:
           name: Deploy app to Firebase Hosting
           command: pwd & ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN
