@@ -120,7 +120,7 @@ jobs:
     steps:
       - checkout
       - node/install:
-          install-yarn: false
+          install-yarn: true
           node-version: '14' 
       - attach_workspace:
           at: ~/project
