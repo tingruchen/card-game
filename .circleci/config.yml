@@ -4,7 +4,6 @@ version: 2.1
 
 orbs:
   node: circleci/node@5.0.3
-  heroku: circleci/heroku@1.2.6
 
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
@@ -18,28 +17,29 @@ jobs:
       - run:
           name: Run tests
           command: yarn test
-      # - run:
-      #     name: Build app
-      #     command: yarn build
-      # - persist_to_workspace:
-      #     root: ~/project
-      #     paths: .
+      - run:
+          name: Build app
+          command: yarn build
+      - persist_to_workspace:
+          root: ~/project
+          paths: .
   deploy: # this can be any name you choose
-    executor: heroku/default
+    executor: node/default
     steps:
-      - attach_workspace:
-          at: ~/project
-      - heroku/deploy-via-git:
-          force: true
-          # force push when pushing to the heroku remote, see: https://devcenter.heroku.com/articles/git
+      - run:
+          name: Install firebase
+          command: npm install --save-dev firebase-tools    
+      - run:
+          name: Deploy app to Firebase Hosting
+          command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN
 
 workflows:
   build_test_deploy: # this can be any name you choose
     jobs:
       - build_and_test
-      # - deploy:
-      #     requires:
-      #       - build_and_test # only deploy if the build_and_test job has completed
-      #     filters:
-      #       branches:
-      #         only: main # only deploy when on main
+      - deploy:
+          requires:
+            - build_and_test # only deploy if the build_and_test job has completed
+          # filters:
+          #   branches:
+          #     only: main # only deploy when on main
