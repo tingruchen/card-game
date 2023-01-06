@@ -1,6 +1,6 @@
 <script setup>
 import HelloWorld from "./components/HelloWorld.vue";
-import env from "utility/env";
+// import env from "utility/env";
 
 const a = 1;
 </script>
@@ -8,11 +8,11 @@ const a = 1;
 <template>
   <div>
     <a href="https://vuejs.org/" target="_blank">
-      <img
+      <!-- <img
         :src="`${env.VUE_APP_CDN_STATIC_URL}vue.svg`"
         class="logo vue"
         alt="Vue logo"
-      />
+      /> -->
     </a>
   </div>
   <HelloWorld msg="Vite + Vue" />
