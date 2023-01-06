@@ -114,7 +114,7 @@ jobs:
       - persist_to_workspace:
           root: ~/
           paths:  
-            - project/card-game/build
+            - ~/project/card-game/dist/*
   release-assets:
     executor: node/default
     steps:
