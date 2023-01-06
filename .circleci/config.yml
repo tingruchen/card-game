@@ -103,8 +103,8 @@ jobs:
   build:
     executor: node/default
     steps:
+      - checkout
       - node/install-packages:
-          app-dir: ~/project/card-game
           pkg-manager: yarn
       - run:
           command: yarn build
