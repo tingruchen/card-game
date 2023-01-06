@@ -115,7 +115,7 @@ jobs:
           root: ~/project
           paths:  
             - dist
-  release-assets:
+  release:
     executor: node/default
     steps:
     - attach_workspace:
@@ -137,6 +137,7 @@ workflows:
   tag-release:
     jobs:
       - build
+      - release
       # - release:
       #   filters:
       #     branches:
