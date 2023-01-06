@@ -127,8 +127,6 @@ jobs:
       - attach_workspace:
           at: ~/project
       - run:
-          command: ls
-      - run:
           command: node tag-release.js
 
 workflows:
