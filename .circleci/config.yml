@@ -106,18 +106,18 @@ jobs:
       - node/install-packages:
           pkg-manager: yarn
       - run:
-        command: yarn build
+          command: yarn build
       - persist_to_workspace:
-        root: ./dist
-        paths:  
-          - ./dist
+          root: ./dist
+          paths:  
+            - ./dist
   release-assets:
     executor: node/default
     steps:
     - attach_workspace:
-      at: ./dist
+        at: ./dist
     - run:
-      command: node ../tag-release.js
+        command: node ../tag-release.js
 
 workflows:
   build_test_deploy: # this can be any name you choose
