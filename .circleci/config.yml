@@ -61,7 +61,7 @@ jobs:
           node-version: '14' 
       - run:
           name: print tag
-          command: echo tagged! ${CIRCLE_TAG}
+          command: echo tagged! $CIRCLE_TAG
   # build:
   #   executor: node/default
   #   steps:
