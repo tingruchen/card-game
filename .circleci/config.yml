@@ -119,15 +119,14 @@ workflows:
               only: main # only deploy when on main
       - example-job
   tag-release:
-    filters:
-      branches:
-        only:
-          - release-test
-      tags:
-        only:
-          - /.*/
-      
     jobs:
       # - build
       # - release
-      - release-job
+      - release-job:
+        filters:
+          branches:
+            only:
+              - release-test
+          tags:
+            only:
+              - /.*/
