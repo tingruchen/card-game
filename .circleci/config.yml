@@ -19,13 +19,7 @@ jobs:
           command: yarn test
       - run:
           name: Build app
-          command: yarn build
-      - persist_to_workspace:
-          root: ~/project
-          paths: .
-  deploy: # this can be any name you choose
-    executor: node/default
-    steps:
+          command: pwd & yarn build
       - run:
           name: Install firebase
           command: npm install --save-dev firebase-tools
@@ -33,14 +27,27 @@ jobs:
           app-dir: ~/project/card-game
           name: Deploy app to Firebase Hosting
           command: pwd & ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN
+      - persist_to_workspace:
+          root: ~/project
+          paths: .
+  # deploy: # this can be any name you choose
+  #   executor: node/default
+  #   steps:
+  #     - run:
+  #         name: Install firebase
+  #         command: npm install --save-dev firebase-tools
+  #     - run:
+  #         app-dir: ~/project/card-game
+  #         name: Deploy app to Firebase Hosting
+  #         command: pwd & ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN
 
 workflows:
   build_test_deploy: # this can be any name you choose
     jobs:
       - build_and_test
-      - deploy:
-          requires:
-            - build_and_test # only deploy if the build_and_test job has completed
+      # - deploy:
+      #     requires:
+      #       - build_and_test # only deploy if the build_and_test job has completed
           # filters:
           #   branches:
           #     only: main # only deploy when on main
