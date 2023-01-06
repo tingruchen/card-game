@@ -118,12 +118,16 @@ jobs:
   release:
     executor: node/default
     steps:
-    - attach_workspace:
-        at: ~/project
-    - run:
-        command:
-          - ls
-          - node tag-release.js
+      - checkout
+      - node/install:
+          install-yarn: true 
+          node-version: '14' 
+      - attach_workspace:
+          at: ~/project
+      - run:
+          command:
+            - ls
+            - node tag-release.js
 
 workflows:
   build_test_deploy: # this can be any name you choose
