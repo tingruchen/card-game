@@ -28,7 +28,7 @@ jobs:
     steps:
       - run:
           name: Install firebase
-          command: npm install --save-dev firebase-tools    
+          command: npm install --save-dev firebase-tools
       - run:
           name: Deploy app to Firebase Hosting
           command: ls # ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN
@@ -38,6 +38,7 @@ workflows:
     jobs:
       - build_and_test
       - deploy:
+          app-dir: ~/project/card-game
           requires:
             - build_and_test # only deploy if the build_and_test job has completed
           # filters:
