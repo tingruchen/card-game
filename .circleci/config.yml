@@ -132,11 +132,11 @@ workflows:
   tag-release:
     jobs:
       - build
-      - release:
-        filters:
-          branches:
-            only:
-              - release-test
-          # tags:
-          #   only:
-          #     - /.*/
+      # - release:
+      #   filters:
+      #     branches:
+      #       only:
+      #         - release-test
+      #     tags:
+      #       only:
+      #         - /.*/
