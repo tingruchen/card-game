@@ -31,8 +31,11 @@ jobs:
       - node/install:
           node-version: '14'
       - run:
+          name: version
+          command: node -v & npm -v
+      - run:
           name: Install firebase
-          command: node -v & npm install -D firebase-tools & ls
+          command: npm install -D firebase-tools & ls
       - run:
           name: Deploy app to Firebase Hosting
           command: pwd & ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN
