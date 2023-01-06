@@ -20,17 +20,14 @@ jobs:
       - run:
           name: Build app
           command: pwd & yarn build  & ls
-      - run: mkdir -p workspace
-      - run: cp -r ./ workspace/
       - persist_to_workspace:
-          root: workspace
+          root: ~/project
           paths: .
   deploy: # this can be any name you choose
     executor: node/default
     steps:
       - attach_workspace:
-          # Must be absolute path or relative path from working_directory
-          at: /workspace
+          at: ~/project
       - run:
           name: Install firebase
           command: npm install --save-dev firebase-tools & ls
