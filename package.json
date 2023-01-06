@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "serve": "vite --mode development",
-    "build": "vite build",
+    "build": "vite build --mode development",
     "preview": "vite preview",
     "test": "vitest",
     "coverage": "vitest run --coverage"
