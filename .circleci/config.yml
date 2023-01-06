@@ -101,8 +101,14 @@ jobs:
   #         name: print tag
   #         command: echo tagged! $CIRCLE_TAG
   build:
-    executor: node/default
+    # executor: node/default
+    docker:
+      # replace with your preferred image
+      - image: cimg/base:stable
     steps:
+       - node/install:
+          install-yarn: true 
+          node-version: '14'
       - node/install-packages:
           pkg-manager: yarn
       - run:
