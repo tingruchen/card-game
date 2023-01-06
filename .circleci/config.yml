@@ -32,7 +32,7 @@ jobs:
       - run:
           app-dir: ~/project/card-game
           name: Deploy app to Firebase Hosting
-          command: ls # ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN
+          command: pwd & ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN
 
 workflows:
   build_test_deploy: # this can be any name you choose
