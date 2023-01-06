@@ -4,6 +4,7 @@ version: 2.1
 
 orbs:
   node: circleci/node@5.0.3
+  firebase-deploy: azdevs/firebase-deploy@1.0.0
 
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
@@ -43,15 +44,17 @@ jobs:
       # Reuse the workspace from the build job
       - attach_workspace:
           at: .
-      - run:
-          name: Install firebase
-          command: npm install & npm install -D firebase-tools & ls
+      # - run:
+      #     name: Install firebase
+      #     command: npm install -D firebase-tools & ls
       - run:
           name: Check
           command: pwd & ls
-      - run:
-          name: Deploy app to Firebase Hosting
-          command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN
+      # - run:
+      #     name: Deploy app to Firebase Hosting
+      #     command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN
+      - firebase-deploy/deploy:
+          token: $FIREBASE_TOKEN
 
 workflows:
   build_test_deploy: # this can be any name you choose
