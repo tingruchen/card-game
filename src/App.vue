@@ -13,6 +13,7 @@ const a = 1;
         class="logo vue"
         alt="Vue logo"
       /> -->
+      pr
     </a>
   </div>
   <HelloWorld msg="Vite + Vue" />
