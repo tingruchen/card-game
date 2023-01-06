@@ -106,7 +106,7 @@ jobs:
       # replace with your preferred image
       - image: cimg/base:stable
     steps:
-       - node/install:
+      - node/install:
           install-yarn: true 
           node-version: '14'
       - node/install-packages:
