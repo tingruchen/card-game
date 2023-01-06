@@ -112,9 +112,9 @@ jobs:
       - run:
           command: yarn build
       - persist_to_workspace:
-          root: ./build/dist
+          root: ~/
           paths:  
-            - dist/*
+            - project/card-game/build
   release-assets:
     executor: node/default
     steps:
