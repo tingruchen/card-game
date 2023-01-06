@@ -51,22 +51,14 @@ jobs:
           command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN
           name: node version
           command: node -v
-  release-job:
-    docker:
-      # replace with your preferred image
-      - image: cimg/base:stable
-    steps:
-      - node/install:
-          install-yarn: false 
-          node-version: '14' 
-      - run:
-          name: print tag
-          command: echo tagged! $CIRCLE_TAG
-  # build:
-  #   executor: node/default
+  # release-job:
+  #   docker:
+  #     # replace with your preferred image
+  #     - image: cimg/base:stable
   #   steps:
-  #     - node/install-packages:
-  #         pkg-manager: yarn
+  #     - node/install:
+  #         install-yarn: false
+  #         node-version: '14'
   #     - run:
   #       command: yarn build
   #     - persist_to_workspace:
@@ -106,6 +98,25 @@ jobs:
   #         -H "X-GitHub-Api-Version: 2022-11-28" \
   #         -d \
   #         https://uploads.github.com/repos/tingruchen/card-game/releases/${PACKAGE_VERSION}/assets?name=dist.zip
+  #         name: print tag
+  #         command: echo tagged! $CIRCLE_TAG
+  build:
+    executor: node/default
+    steps:
+      - node/install-packages:
+          pkg-manager: yarn
+      - run:
+        command: yarn build
+      - persist_to_workspace:
+        root: ./dist
+        paths:  ./dist
+  release-assets:
+    executor: node/default
+    steps:
+    - attach_workspace:
+      at: ./dist
+    - run:
+      command: node ../tag-release.js
 
 workflows:
   build_test_deploy: # this can be any name you choose
@@ -120,13 +131,12 @@ workflows:
       - example-job
   tag-release:
     jobs:
-      # - build
-      # - release
-      - release-job:
+      - build
+      - release
         filters:
           branches:
             only:
               - release-test
-          tags:
-            only:
-              - /.*/
+          # tags:
+          #   only:
+          #     - /.*/
