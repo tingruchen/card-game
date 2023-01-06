@@ -18,9 +18,9 @@ jobs:
       - run:
           name: Run tests
           command: yarn test
-      # - run:
-      #     name: Build app
-      #     command: yarn build
+      - run:
+          name: Build app
+          command: yarn build
       # - persist_to_workspace:
       #     root: ~/project
       #     paths: .
@@ -37,9 +37,9 @@ workflows:
   build_test_deploy: # this can be any name you choose
     jobs:
       - build_and_test
-      # - deploy:
-      #     requires:
-      #       - build_and_test # only deploy if the build_and_test job has completed
-      #     filters:
-      #       branches:
-      #         only: main # only deploy when on main
+      - deploy:
+          requires:
+            - build_and_test # only deploy if the build_and_test job has completed
+          filters:
+            branches:
+              only: main # only deploy when on main
