@@ -43,10 +43,6 @@ jobs:
       # Reuse the workspace from the build job
       - attach_workspace:
           at: .
-      # - run:
-      #     app-dir: ~/mern-starter
-      #     name: Install firebase
-      #     command: npm install -D firebase-tools & ls
       - run:
           name: Check
           command: pwd & ls
@@ -61,6 +57,6 @@ workflows:
       - deploy:
           requires:
             - build_and_test # only deploy if the build_and_test job has completed
-          # filters:
-          #   branches:
-          #     only: main # only deploy when on main
+          filters:
+            branches:
+              only: main # only deploy when on main
