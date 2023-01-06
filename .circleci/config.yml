@@ -104,9 +104,9 @@ jobs:
     executor: node/default
     steps:
       - checkout
-       - node/install:
-          install-yarn: true 
-          node-version: '14' 
+      - node/install:
+        install-yarn: true 
+        node-version: '14' 
       - node/install-packages:
           pkg-manager: yarn
       - run:
