@@ -12,6 +12,8 @@ jobs:
     executor: node/default # use the default executor defined within the orb
     steps:
       - checkout
+      - node/install:
+          node-version: '14'
       - node/install-packages:
           pkg-manager: yarn
       - run:
@@ -28,8 +30,6 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/project
-      - node/install:
-          node-version: '14'
       - run:
           name: version
           command: node -v & npm -v
@@ -38,7 +38,7 @@ jobs:
           command: npm install -D firebase-tools & ls
       - run:
           name: Deploy app to Firebase Hosting
-          command: cd ./node_modules/.bin & ls & pwd # & ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN
+          command: cd node_modules & ls & pwd # & ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN
 
 workflows:
   build_test_deploy: # this can be any name you choose
