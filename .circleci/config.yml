@@ -132,7 +132,7 @@ workflows:
   tag-release:
     jobs:
       - build
-      - release
+      - release:
         filters:
           branches:
             only:
