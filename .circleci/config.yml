@@ -10,7 +10,7 @@ orbs:
 jobs:
   build_and_test: # this can be any name you choose
     executor: node/default # use the default executor defined within the orb
-    # working_directory: /tmp
+    working_directory: /
     steps:
       - checkout
       - node/install-packages:
@@ -21,20 +21,21 @@ jobs:
       - run:
           name: Build app
           command: pwd & yarn build  & ls
+      - run: mkdir -p workspace
+      - run: cp -r ./ workspace/
       - persist_to_workspace:
-          root: ~/project
+          root: workspace
           paths: .
   deploy: # this can be any name you choose
     executor: node/default
     steps:
-      # - attach_workspace:
-      #     # Must be absolute path or relative path from working_directory
-      #     at: /tmp/workspace
+      - attach_workspace:
+          # Must be absolute path or relative path from working_directory
+          at: /workspace
       - run:
           name: Install firebase
-          command: npm install --save-dev firebase-tools
+          command: npm install --save-dev firebase-tools & ls
       - run:
-          app-dir: ~/project/card-game
           name: Deploy app to Firebase Hosting
           command: pwd & ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN
 
