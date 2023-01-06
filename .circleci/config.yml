@@ -109,7 +109,8 @@ jobs:
         command: yarn build
       - persist_to_workspace:
         root: ./dist
-        paths:  ./dist
+        paths:  
+          - ./dist
   release-assets:
     executor: node/default
     steps:
