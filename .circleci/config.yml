@@ -114,14 +114,16 @@ jobs:
       - persist_to_workspace:
           root: ~/project
           paths:  
-            - dist
+            - .
   release:
     executor: node/default
     steps:
     - attach_workspace:
         at: ~/project
     - run:
-        command: node ../tag-release.js
+        command:
+          - ls
+          - node tag-release.js
 
 workflows:
   build_test_deploy: # this can be any name you choose
