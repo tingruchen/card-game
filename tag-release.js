@@ -22,7 +22,7 @@ async function performRelease({ GITHUB_TOKEN, CIRCLE_TAG = "0.0.3" }) {
         },
       }
     );
-    uploadUrl = upload_url.split("{?name,label}")[0];
+    // uploadUrl = upload_url.split("{?name,label}")[0];
   } catch (err) {
     console.error("release err", err);
   }
@@ -46,25 +46,25 @@ async function performRelease({ GITHUB_TOKEN, CIRCLE_TAG = "0.0.3" }) {
   //   console.error("errrrr", err);
   // }
 
-  zipper.zip("./dist", async function (error, zipped) {
-    if (!error) {
-      zipped.compress(); // compress before exporting
+  // zipper.zip("./dist", async function (error, zipped) {
+  //   if (!error) {
+  //     zipped.compress(); // compress before exporting
 
-      var buff = zipped.memory(); // get the zipped file as a Buffer
+  //     var buff = zipped.memory(); // get the zipped file as a Buffer
 
-      try {
-        await axios.post(`${uploadUrl}?name=dist.zip`, buff, {
-          headers: {
-            Accept: "application/vnd.github+json",
-            "Content-Type": "application/zip",
-            Authorization: `token ${GITHUB_TOKEN}`,
-          },
-        });
-      } catch (err) {
-        console.error("assets err", err);
-      }
-    }
-  });
+  //     try {
+  //       await axios.post(`${uploadUrl}?name=dist.zip`, buff, {
+  //         headers: {
+  //           Accept: "application/vnd.github+json",
+  //           "Content-Type": "application/zip",
+  //           Authorization: `token ${GITHUB_TOKEN}`,
+  //         },
+  //       });
+  //     } catch (err) {
+  //       console.error("assets err", err);
+  //     }
+  //   }
+  // });
 }
 
 performRelease(process.env);
