@@ -112,14 +112,14 @@ jobs:
       - run:
           command: yarn build
       - persist_to_workspace:
-          root: ./card-game/dist
+          root: ./build/dist
           paths:  
             - dist/*
   release-assets:
     executor: node/default
     steps:
     - attach_workspace:
-        at: ./card-game/dist
+        at: ./build/dist
     - run:
         command: node ../tag-release.js
 
