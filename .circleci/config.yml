@@ -51,6 +51,17 @@ jobs:
           command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN
           name: node version
           command: node -v
+  release-job:
+    docker:
+      # replace with your preferred image
+      - image: cimg/base:stable
+    steps:
+      - node/install:
+          install-yarn: false 
+          node-version: '14' 
+      - run:
+          name: node version
+          command: echo "tagged! ${CIRCLE_TAG}"
   # build:
   #   executor: node/default
   #   steps:
@@ -107,11 +118,16 @@ workflows:
             branches:
               only: main # only deploy when on main
       - example-job
-  # tag-release:
-  #   filters:
-  #     branches:
-  #       only:
-  #         - release-test
-  #   jobs:
-  #     - build
-  #     - release
+  tag-release:
+    filters:
+      branches:
+        only:
+          - release-test
+      tags:
+        only:
+          - /.*/
+      
+    jobs:
+      # - build
+      # - release
+      - release-job
