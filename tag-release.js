@@ -1,7 +1,7 @@
 const zipper = require("zip-local");
 const axios = require("axios").default;
 
-async function performRelease({ GITHUB_TOKEN, CIRCLE_TAG = "0.0.8" }) {
+async function performRelease({ GITHUB_TOKEN, CIRCLE_TAG }) {
   try {
     let {
       data: { upload_url: uploadUrl }
@@ -50,25 +50,6 @@ async function performRelease({ GITHUB_TOKEN, CIRCLE_TAG = "0.0.8" }) {
   } catch (err) {
     console.error("release err", err);
   }
-  // let uploadUrl;
-  // try {
-  //   const res = await axios.get(
-  //     "https://api.github.com/repos/tingruchen/card-game/releases",
-  //     {
-  //       headers: {
-  //         Authorization: `token `,
-  //       },
-  //     }
-  //   );
-  //   // releaseId = res.data.find((release) => release.tag_name === "0.0.0").id;
-  //   // console.log("releaseId", releaseId, res.data);
-  //   uploadUrl = res.data
-  //     .find((release) => release.tag_name === "0.0.0")
-  //     .upload_url.split("{?name,label}")[0];
-  //   console.log("upload_url", uploadUrl);
-  // } catch (err) {
-  //   console.error("errrrr", err);
-  // }
 }
 
 performRelease(process.env);

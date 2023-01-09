@@ -146,12 +146,7 @@ workflows:
           filters:
             branches:
               only:
-                - release-test
-      # - release:
-      #   filters:
-      #     branches:
-      #       only:
-      #         - release-test
-      #     tags:
-      #       only:
-      #         - /.*/
+                - main
+            tags:
+              only:
+                - /.*/
