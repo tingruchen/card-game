@@ -32,7 +32,7 @@ async function performRelease({ GITHUB_TOKEN, CIRCLE_TAG = "0.0.3" }) {
   //     "https://api.github.com/repos/tingruchen/card-game/releases",
   //     {
   //       headers: {
-  //         Authorization: `token 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`,
+  //         Authorization: `token `,
   //       },
   //     }
   //   );
