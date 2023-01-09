@@ -1,11 +1,28 @@
 const zipper = require("zip-local");
 const axios = require("axios").default;
 
-async function performRelease({ GITHUB_TOKEN, CIRCLE_TAG = "0.0.7" }) {
+async function performRelease({ GITHUB_TOKEN, CIRCLE_TAG = "0.0.8" }) {
   try {
     let {
       data: { upload_url: uploadUrl }
-    } = await axios.post("https://api.github.com/repos/tingruchen/card-game/releases",{tag_name: CIRCLE_TAG,target_commitish: "main",name: CIRCLE_TAG,body: `release of ${CIRCLE_TAG}`,draft: false,prerelease: false,generate_release_notes: false},{headers: {Accept: "application/vnd.github+json",Authorization: `token ${GITHUB_TOKEN}`}});
+    } = await axios.post(
+      "https://api.github.com/repos/tingruchen/card-game/releases",
+      {
+        tag_name: CIRCLE_TAG,
+        target_commitish: "main",
+        name: CIRCLE_TAG,
+        body: `release of ${CIRCLE_TAG}`,
+        draft: false,
+        prerelease: false,
+        generate_release_notes: false
+      },
+      {
+        headers: {
+          Accept: "application/vnd.github+json",
+          Authorization: `token ${GITHUB_TOKEN}`
+        }
+      }
+    );
 
     zipper.zip("./dist", async function (error, zipped) {
       if (!error) {
