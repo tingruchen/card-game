@@ -144,6 +144,12 @@ workflows:
     jobs:
       - build
       - release
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - release-test
       # - release:
       #   filters:
       #     branches:
