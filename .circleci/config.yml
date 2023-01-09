@@ -141,19 +141,15 @@ workflows:
     jobs:
       - build:
         filters:
-          branches:
-            only:
-              - main
           tags:
-            only:
-              - /.*/
+            only: /.*/
+          branches:
+            ignore: /.*/
       - release:
           requires:
             - build
           filters:
-            branches:
-              only:
-                - main
             tags:
-              only:
-                - /.*/
+              only: /.*/
+            branches:
+              ignore: /.*/
