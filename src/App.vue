@@ -15,7 +15,7 @@ const a = 1;
       /> -->
     </a>
   </div>
-  <HelloWorld msg="Vite + Vue" />
+  <HelloWorld msg="Vite + Vue!" />
 </template>
 
 <style scoped lang="scss">
