@@ -78,10 +78,10 @@ jobs:
       - run:
           command: node tag-release.js
   notify:
-    parameters:
-      pull_request:
-        type: env_var_name
-        default: CIRCLE_PULL_REQUEST
+    # parameters:
+    #   pull_request:
+    #     type: env_var_name
+    #     default: CIRCLE_PULL_REQUEST
     executor: node/default
     steps:
       - checkout
@@ -124,6 +124,6 @@ workflows:
   slack-notify:
     when:
       condition:
-        - not: <<parameters.pull_request>>
+        - not: <<$CIRCLE_PULL_REQUEST>>
     jobs:
       - notify
