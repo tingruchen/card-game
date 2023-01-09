@@ -106,11 +106,11 @@ workflows:
             branches:
               only: main # only deploy when on main
       - notify:
-        requires:
-            - deploy
-          filters:
-            branches:
-              only: main
+          requires:
+              - deploy
+            filters:
+              branches:
+                only: main
   tag-release:
     jobs:
       - build:
@@ -128,10 +128,10 @@ workflows:
             branches:
               ignore: /.*/
       - notify:
-        requires:
-            - release
-          filters:
-            tags:
-              only: /.*/
-            branches:
-              ignore: /.*/
+          requires:
+              - release
+            filters:
+              tags:
+                only: /.*/
+              branches:
+                ignore: /.*/
