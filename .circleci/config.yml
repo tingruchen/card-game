@@ -129,9 +129,9 @@ workflows:
               ignore: /.*/
       - notify:
           requires:
-              - release
-            filters:
-              tags:
-                only: /.*/
-              branches:
-                ignore: /.*/
+            - release
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              ignore: /.*/
