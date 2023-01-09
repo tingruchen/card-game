@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@vue/compat": "^3.2.45",
+    "axios": "^1.2.2",
     "firebase-tools": "^11.20.0",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6",
@@ -37,6 +38,7 @@
     "vite": "^4.0.3",
     "vite-plugin-eslint": "^1.6.1",
     "vitest": "^0.26.3",
-    "vue-eslint-parser": "^9.0.3"
+    "vue-eslint-parser": "^9.0.3",
+    "zip-local": "^0.3.5"
   }
 }
