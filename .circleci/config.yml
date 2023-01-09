@@ -107,10 +107,10 @@ workflows:
               only: main # only deploy when on main
       - notify:
           requires:
-              - deploy
-            filters:
-              branches:
-                only: main
+            - deploy
+          filters:
+            branches:
+              only: main
   tag-release:
     jobs:
       - build:
