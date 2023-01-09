@@ -139,7 +139,14 @@ workflows:
               only: main # only deploy when on main
   tag-release:
     jobs:
-      - build
+      - build:
+        filters:
+          branches:
+            only:
+              - main
+          tags:
+            only:
+              - /.*/
       - release:
           requires:
             - build
