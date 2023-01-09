@@ -77,6 +77,23 @@ jobs:
           at: ~/project
       - run:
           command: node tag-release.js
+  notify:
+    # parameters:
+    #   pull_request:
+    #     type: env_var_name
+    #     default: CIRCLE_PULL_REQUEST
+    executor: node/default
+    steps:
+      - checkout
+      - node/install:
+          install-yarn: true
+          node-version: '14'
+      - node/install-packages:
+          pkg-manager: yarn
+      - attach_workspace:
+          at: ~/project
+      - run:
+          command: node slack-notify.js
 
 workflows:
   build_test_deploy: # this can be any name you choose
@@ -88,6 +105,12 @@ workflows:
           filters:
             branches:
               only: main # only deploy when on main
+      - notify:
+          requires:
+            - deploy
+          filters:
+            branches:
+              only: main
   tag-release:
     jobs:
       - build:
@@ -99,6 +122,14 @@ workflows:
       - release:
           requires:
             - build
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              ignore: /.*/
+      - notify:
+          requires:
+            - release
           filters:
             tags:
               only: /.*/
