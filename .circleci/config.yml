@@ -49,8 +49,6 @@ jobs:
       - run:
           name: Deploy app to Firebase Hosting
           command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN
-          name: node version
-          command: node -v
   # release-job:
   #   docker:
   #     # replace with your preferred image
@@ -139,7 +137,6 @@ workflows:
           filters:
             branches:
               only: main # only deploy when on main
-      - example-job
   tag-release:
     jobs:
       - build
