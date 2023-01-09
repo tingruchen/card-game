@@ -140,11 +140,11 @@ workflows:
   tag-release:
     jobs:
       - build:
-        filters:
-          tags:
-            only: /.*/
-          branches:
-            ignore: /.*/
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              ignore: /.*/
       - release:
           requires:
             - build
