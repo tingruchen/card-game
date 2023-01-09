@@ -1,7 +1,7 @@
 const zipper = require("zip-local");
 const axios = require("axios").default;
 
-async function performRelease({ GITHUB_TOKEN, CIRCLE_TAG = "0.0.6" }) {
+async function performRelease({ GITHUB_TOKEN, CIRCLE_TAG = "0.0.7" }) {
   try {
     let {
       data: { upload_url: uploadUrl }
