@@ -49,55 +49,6 @@ jobs:
       - run:
           name: Deploy app to Firebase Hosting
           command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN
-  # release-job:
-  #   docker:
-  #     # replace with your preferred image
-  #     - image: cimg/base:stable
-  #   steps:
-  #     - node/install:
-  #         install-yarn: false
-  #         node-version: '14'
-  #     - run:
-  #       command: yarn build
-  #     - persist_to_workspace:
-  #       root: ~/dist
-  #       paths:  ./dist
-  # release:
-  #   docker:
-  #     # replace with your preferred image
-  #     - image: cimg/base:stable
-  #   steps:
-  #   - attach_workspace:
-  #     at:
-  #   - run:
-  #     command:
-  #       - export PACKAGE_VERSION=$(node -p "require('./package.json').version")
-  #       - curl \
-  #         -X POST \
-  #         -H "Accept: application/vnd.github+json" \
-  #         -H "Authorization: Bearer ${GITHUB_TOKEN}"\
-  #         -H "X-GitHub-Api-Version: 2022-11-28" \
-  #         https://api.github.com/repos/tingruchen/card-game/releases \
-  #         -d '{"tag_name":${PACKAGE_VERSION},"target_commitish":"main","name":${PACKAGE_VERSION},"body":"release of " + ${PACKAGE_VERSION},"draft":false,"prerelease":false,"generate_release_notes":false}'
-  # release-assets:
-  #   docker:
-  #     # replace with your preferred image
-  #     - image: cimg/base:stable
-  #   steps:
-  #   - attach_workspace:
-  #     at:
-  #   - run:
-  #     command:
-  #       - export PACKAGE_VERSION=$(node -p "require('./package.json').version")
-  #       - curl \
-  #         -X POST \
-  #         -H "Accept: application/vnd.github+json" \
-  #         -H "Authorization: Bearer ${GITHUB_TOKEN}"\
-  #         -H "X-GitHub-Api-Version: 2022-11-28" \
-  #         -d \
-  #         https://uploads.github.com/repos/tingruchen/card-game/releases/${PACKAGE_VERSION}/assets?name=dist.zip
-  #         name: print tag
-  #         command: echo tagged! $CIRCLE_TAG
   build:
     executor: node/default
     steps:
