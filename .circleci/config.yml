@@ -93,7 +93,7 @@ jobs:
       - attach_workspace:
           at: ~/project
       - run:
-          command: node slack-notify.js
+          command: node line-notify.js
 
 workflows:
   build_test_deploy: # this can be any name you choose
