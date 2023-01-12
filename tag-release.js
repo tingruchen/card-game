@@ -48,7 +48,8 @@ async function performRelease({ GITHUB_TOKEN, CIRCLE_TAG }) {
       }
     });
   } catch (err) {
-    console.error("release err", err);
+    console.error("release err");
+    throw err;
   }
 }
 
