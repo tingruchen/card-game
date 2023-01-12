@@ -11,6 +11,6 @@ describe("HelloWorld", () => {
   });
 
   test("msg should be HelloWorld", () => {
-    expect(wrapper.find(`[data-e2e="msg"]`).text()).to.equal(msg);
+    expect(wrapper.find(`[data-e2e="fail"]`).text()).to.equal(msg);
   });
 });
