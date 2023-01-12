@@ -16,7 +16,8 @@ async function notify({ CIRCLE_TAG, CIRCLE_BUILD_URL, LINE_TOKEN }) {
       }
     );
   } catch (err) {
-    console.error("notify failed. ", err);
+    console.error("notify err");
+    throw err;
   }
 }
 
